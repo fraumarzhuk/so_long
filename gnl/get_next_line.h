@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/09 11:47:14 by mzhukova         ###   ########.fr       */
+/*   Created: 2023/12/01 16:44:20 by mzhukova          #+#    #+#             */
+/*   Updated: 2023/12/11 16:37:06 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <mlx.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strrchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+void	*ft_calloc(int count, int size);
+
+#endif
