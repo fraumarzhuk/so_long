@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/10 16:22:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:35:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct map
 {
 	char *line;
+	int check;
 	struct map *next;
 	
 }	t_map;
