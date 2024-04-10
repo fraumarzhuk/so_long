@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:04:02 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/12/11 16:40:39 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:15:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_remainder(const char *remainder)
 		n++;
 	if (remainder[n] == '\0' || remainder[n + 1] == '\0' )
 		return (NULL);
-	end = malloc(ft_strlen(remainder) - n + 1);
+	end = malloc(ftt_strlen(remainder) - n + 1);
 	if (!end)
 		return (NULL);
 	temp = end;
@@ -67,16 +67,16 @@ char	*read_and_store(char *buffer, char **remainder)
 
 	res = NULL;
 	if (*remainder == NULL)
-		*remainder = ft_strdup(buffer);
+		*remainder = ftt_strdup(buffer);
 	else
 	{
-		temp = ft_strjoin(*remainder, buffer);
+		temp = ftt_strjoin(*remainder, buffer);
 		free(*remainder);
 		*remainder = temp;
 	}
 	if (!*remainder)
 		return (NULL);
-	if (ft_strrchr(*remainder, '\n') == NULL)
+	if (ftt_strrchr(*remainder, '\n') == NULL)
 		return (NULL);
 	else
 	{
@@ -95,13 +95,13 @@ char	*process_remainder(char **remainder)
 	res = NULL;
 	if (*remainder != NULL && **remainder != '\0')
 	{
-		if (ft_strrchr(*remainder, '\n') != NULL)
+		if (ftt_strrchr(*remainder, '\n') != NULL)
 		{
 			res = read_and_store("", remainder);
 		}
 		else
 		{
-			res = ft_strdup(*remainder);
+			res = ftt_strdup(*remainder);
 			free(*remainder);
 			*remainder = NULL;
 		}

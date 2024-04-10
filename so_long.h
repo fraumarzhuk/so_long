@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/09 13:17:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:52:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,27 @@
 
 # include <mlx.h>
 # include <fcntl.h>
+# include <stdbool.h>
+# include <stdio.h>
 # include "./libft/libft.h"
 # include "./libft/printf/ft_printf.h"
+# include "./gnl/get_next_line_bonus.h"
+
+typedef struct map
+{
+	char *line;
+	struct t_map *next;
+	
+}	t_map;
+
+typedef struct args
+{
+	int line_count;
+	int fd;
+	char **map;
+	
+} t_args;
+
+int map_validation(t_args *args);
 
 #endif

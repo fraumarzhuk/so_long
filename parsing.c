@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 16:44:20 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/12/11 16:37:06 by mzhukova         ###   ########.fr       */
+/*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
+/*   Updated: 2024/04/10 12:58:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "so_long.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+void insert_end(t_map *map)
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+int map_validation(t_args *args)
+{
+	t_map *map;
 
-char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strrchr(const char *s, int c);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
-void	*ft_calloc(int count, int size);
-
-#endif
+	map = NULL;
+	while (true)
+	{
+		map->line = get_next_line(args->fd);
+		args->line_count += 1;
+		if (map->line == NULL)
+			break ;
+	}
+}

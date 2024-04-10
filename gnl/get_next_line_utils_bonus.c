@@ -6,13 +6,13 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 01:39:07 by mariannazhu       #+#    #+#             */
-/*   Updated: 2023/12/11 16:38:24 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:17:23 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ftt_strlen(const char *s)
 {
 	size_t	i;
 
@@ -24,11 +24,11 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ftt_strrchr(const char *s, int c)
 {
 	int	i;
 
-	i = ft_strlen(s);
+	i = ftt_strlen(s);
 	while (i >= 0)
 	{
 		if (s[i] == (char)c)
@@ -38,13 +38,13 @@ char	*ft_strrchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ftt_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
 	int		i;
 
 	i = 0;
-	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	result = malloc((ftt_strlen(s1) + ftt_strlen(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	while (*s1)
@@ -61,7 +61,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-void	*ft_calloc(int count, int size)
+void	*ftt_calloc(int count, int size)
 {
 	char	*p;
 	int		i;
@@ -75,13 +75,13 @@ void	*ft_calloc(int count, int size)
 	return (p);
 }
 
-char	*ft_strdup(const char *s)
+char	*ftt_strdup(const char *s)
 {
 	char	*s2;
 	int		i;
 
 	i = 0;
-	s2 = malloc ((sizeof(char)) * (ft_strlen(s) + 1));
+	s2 = malloc ((sizeof(char)) * (ftt_strlen(s) + 1));
 	if (!s2 || !s)
 		return (NULL);
 	while (s[i] != '\0')

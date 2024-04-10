@@ -8,7 +8,7 @@ GNL_DIR = ./gnl
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx
 
 # Source files
-SRCS = main.c
+SRCS = main.c parsing.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c
 OBJS = $(SRCS:.c=.o)
 
 # 'all' target
@@ -17,10 +17,6 @@ all: $(NAME)
 # 'libft' target
 libft:
 	$(MAKE) -C $(LIBFT_DIR)
-
-# 'gnl' target
-gnl:
-	$(MAKE) -C $(GNL_DIR)
 
 # 'so_long' target
 $(NAME): libft gnl $(OBJS)
@@ -34,7 +30,6 @@ $(NAME): libft gnl $(OBJS)
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 #$(MAKE) -C $(MLX_DIR) clean
-	$(MAKE) -C $(GNL_DIR) clean
 	rm -f $(OBJS)
 
 # 'fclean' target

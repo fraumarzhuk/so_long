@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:05:15 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:43 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:18:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strrchr(const char *s, int c);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
-void	*ft_calloc(int count, int size);
+char	*ftt_strjoin(char const *s1, char const *s2);
+char	*ftt_strrchr(const char *s, int c);
+size_t	ftt_strlen(const char *s);
+char	*ftt_strdup(const char *s1);
+void    *ftt_calloc(int count, int size);
 
 #endif
