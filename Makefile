@@ -8,7 +8,7 @@ GNL_DIR = ./gnl
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx
 
 # Source files
-SRCS = main.c parsing.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c
+SRCS = main.c parsing.c errors.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c
 OBJS = $(SRCS:.c=.o)
 
 # 'all' target

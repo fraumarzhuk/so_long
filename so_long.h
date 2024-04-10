@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/10 12:52:50 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:22:52 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef struct map
 {
 	char *line;
-	struct t_map *next;
+	struct map *next;
 	
 }	t_map;
 
@@ -37,6 +37,8 @@ typedef struct args
 	
 } t_args;
 
-int map_validation(t_args *args);
+int		map_init(t_args *args);
+int		insert_end(t_map **map, t_args *args);
+void	so_short_error(char *str);
 
 #endif
