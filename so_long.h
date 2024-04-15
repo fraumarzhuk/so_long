@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/15 12:43:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:12:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct args
 {
 	int line_count;
 	int fd;
+	int player_x;
+	int player_y;
 	char **map;
 	
 } t_args;
@@ -42,5 +44,6 @@ int		insert_end(t_map **map, t_args *args);
 void	so_short_error(char *str);
 int		map_validation(char *argv, t_args *args);
 int		check_walls(t_args *args);
+int		find_player(t_args *args);
 
 #endif

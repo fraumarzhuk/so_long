@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/15 12:58:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:19:21 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int map_validation(char *argv, t_args *args)
 	if (ft_strncmp(res, ".ber", 4) != 0)
 		so_short_error("Incorrect map format!");
 	check_walls(args);
+	find_player(args);
 	return (1);
 }
 
@@ -89,8 +90,46 @@ int check_walls(t_args *args)
 			so_short_error("Incorrect wall");
 		i++;
 	}
+	i = 0;
+	while (i < args->line_count)
+	{
+		if (args->map[i][0] != '1' || args->map[i][ft_strlen(args->map[i]) -2] != '1')
+			so_short_error("Incorrect wall");
+		i++;
+	}
 	return (1);	
-	 //check first and last character
-	 //check last line
-	 
+}
+
+int find_player(t_args *args)
+{
+	int	x;
+	int	y;
+	bool found;
+
+	x = 0;
+	y = 0;
+	found = false;
+	
+	while (y < args->line_count)
+	{
+		while(args->map[y][x] != '\n' && args->map[y][x])
+		{
+			if(args->map[y][x] == 'P')
+			{
+				printf("check\n");
+				if (args->map[y][x] == 'P' && found)
+					so_short_error("Two many players!");
+				args->player_x = x;
+				args->player_y = y;
+				found = true;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	if (!found)
+		return (0);
+	printf("location: x = %i, y = %i\n", args->player_x, args->player_y);
+	return (1);
 }
