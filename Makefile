@@ -1,11 +1,11 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
+CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -fsanitize=address
 MLXFLAGS = -framework OpenGL -framework AppKit
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
 GNL_DIR = ./gnl
-LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx
+LIBS = -L$(LIBFT_DIR) -lft #-L$(MLX_DIR) #-lmlx
 
 # Source files
 SRCS = main.c parsing.c errors.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c
@@ -24,7 +24,7 @@ $(NAME): libft gnl $(OBJS)
 
 # Pattern rule for object files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 # 'clean' target
 clean:
