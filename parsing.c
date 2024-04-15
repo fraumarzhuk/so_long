@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/15 14:19:21 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:55:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int map_validation(char *argv, t_args *args)
 		so_short_error("Incorrect map format!");
 	check_walls(args);
 	find_player(args);
+	find_exit(args);
 	return (1);
 }
 
@@ -116,7 +117,6 @@ int find_player(t_args *args)
 		{
 			if(args->map[y][x] == 'P')
 			{
-				printf("check\n");
 				if (args->map[y][x] == 'P' && found)
 					so_short_error("Two many players!");
 				args->player_x = x;
@@ -131,5 +131,54 @@ int find_player(t_args *args)
 	if (!found)
 		return (0);
 	printf("location: x = %i, y = %i\n", args->player_x, args->player_y);
+	return (1);
+}
+
+int find_exit(t_args *args)
+{
+	int	x;
+	int	y;
+	bool found;
+
+	x = 0;
+	y = 0;
+	found = false;
+	
+	while (y < args->line_count)
+	{
+		while(args->map[y][x] != '\n' && args->map[y][x])
+		{
+			if(args->map[y][x] == 'E')
+			{
+				if (args->map[y][x] == 'E' && found)
+					so_short_error("Two many exits!");
+				args->exit_x = x;
+				args->exit_y = y;
+				found = true;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	if (!found)
+		return (0);
+	printf("location exit: x = %i, y = %i\n", args->exit_x, args->exit_y);
+	return (1);
+}
+
+int is_rectangular(t_args *args)
+{
+	int	i;
+	int line_len;
+	
+	i = 0;
+	line_len = ft_strlen(args->map[i]);
+	while (i < args->line_count)
+	{
+		if (ft_strlen(args->map[i]) != line_len)
+			so_short_error("Map is not a rectangle!");
+		i++;
+	}
 	return (1);
 }
