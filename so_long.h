@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/10 16:22:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:53:36 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #define SO_LONG_H
 
-# include <mlx.h>
+
+
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
