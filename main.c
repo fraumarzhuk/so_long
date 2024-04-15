@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/10 16:22:59 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:42:35 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-/* 	void	*mlx;
-	void	*mlx_win; */
+	void	*mlx;
+	void	*mlx_win;
 	t_args	*args;
 	
 	args = malloc(sizeof(t_args));
@@ -28,8 +28,9 @@ int	main(int argc, char **argv)
 		so_short_error("Error reading a file.");
 	if (map_init(args))
 		ft_printf("Success. num or args: %i\n", args->line_count);
-/* 	mlx = mlx_init();
+	map_validation(argv[1], args);
+	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); 
-	mlx_loop(mlx); */
+	mlx_loop(mlx);
 	return(0);
 }

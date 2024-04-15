@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/15 11:02:19 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:58:56 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int map_init(t_args *args)
 	int		i;
 
 	args->line_count = 0;
-	map = ft_calloc(sizeof(t_map), 5);
+	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
 		so_short_error("Malloc failed!");
 	map->line = get_next_line(args->fd);
@@ -58,10 +58,39 @@ int map_init(t_args *args)
 		i++;
 	}
 	args->map[i] = NULL;
-	i = 0;
-    while (args->map[i] != NULL) {
-        printf("%s\n", args->map[i]);
-        i++;
-	}
 	return (1);
+}
+
+int map_validation(char *argv, t_args *args)
+{
+	char *res;
+
+	res = &argv[ft_strlen(argv) - 4];
+	if (ft_strncmp(res, ".ber", 4) != 0)
+		so_short_error("Incorrect map format!");
+	check_walls(args);
+	return (1);
+}
+
+int check_walls(t_args *args)
+{
+	int i;
+	i = 0;
+	while (args->map[0][i] != '\n')
+	{
+		if (args->map[0][i] != '1')
+			so_short_error("Incorrect wall");
+		i++;
+	}
+	i = 0;
+	while (args->map[args->line_count - 1][i])
+	{
+		if (args->map[args->line_count - 1][i] != '1')
+			so_short_error("Incorrect wall");
+		i++;
+	}
+	return (1);	
+	 //check first and last character
+	 //check last line
+	 
 }

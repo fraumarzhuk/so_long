@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/15 10:53:36 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:43:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 #define SO_LONG_H
 
-
-
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <mlx.h>
 # include "./libft/libft.h"
 # include "./libft/printf/ft_printf.h"
 # include "./gnl/get_next_line_bonus.h"
@@ -41,5 +40,7 @@ typedef struct args
 int		map_init(t_args *args);
 int		insert_end(t_map **map, t_args *args);
 void	so_short_error(char *str);
+int		map_validation(char *argv, t_args *args);
+int		check_walls(t_args *args);
 
 #endif
