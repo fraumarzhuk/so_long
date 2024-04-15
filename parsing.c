@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/15 10:47:48 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:48:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int insert_end(t_map **map, t_args *args)
 	t_map *curr;
 	
 	curr = *map;
-	new_node = malloc(sizeof(t_map));
+	new_node = ft_calloc(sizeof(t_map), 1);
 	if (!new_node)
 		so_short_error("Malloc failed!");
 	new_node->next = NULL;
@@ -26,6 +26,7 @@ int insert_end(t_map **map, t_args *args)
 		curr = curr->next;
 	curr->next = new_node;
 	new_node->line = get_next_line(args->fd);
+	// printf("%s\n", new_node->line);
 	if (!new_node->line)
 		return (0);
 	return(1);
@@ -37,24 +38,25 @@ int map_init(t_args *args)
 	int		i;
 
 	args->line_count = 0;
-	map = malloc(sizeof(t_map));
+	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
 		so_short_error("Malloc failed!");
+	map->line = get_next_line(args->fd);
 	map->next = NULL;
 	while (insert_end(&map, args) != 0)
 		args->line_count++;
 	i = 0;
-	args->map = malloc(sizeof(char *) * (args->line_count + 1));
+	args->map = ft_calloc(args->line_count + 1, sizeof(char *));
 	if (!args->map)
 		so_short_error("Malloc failed.");
-	while (i < args->line_count)
+	while (i < args->line_count && map)
 	{
-		args->map[i] = map->line;
+		args->map[i] = ft_strdup(map->line);
 		map = map->next;
+		printf("Check map 0: %s\n", args->map[i]);
 		i++;
 	}
 	args->map[i] = NULL;
-	printf("Check map 0: %s\n", args->map[0]);
 /* 	i = 0;
     while (args->map[i] != NULL) {
         printf("%s\n", args->map[i]);
