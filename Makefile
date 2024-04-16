@@ -25,7 +25,7 @@ libft:
 # 'so_long' target
 $(NAME): libft gnl $(OBJS)
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LIBS) -o $(NAME) >/dev/null
-	@echo "${GREEN}Compiled successfully!${NC}"
+	@echo "${GREEN}💅 Compiled successfully! 💅${NC}"
 
 # Pattern rule for object files
 %.o: %.c
@@ -40,7 +40,7 @@ clean:
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean >/dev/null
 	@rm -f $(NAME) >/dev/null
-	@echo "${YELLOW}All files cleaned.${NC}"
+	@echo "${YELLOW}🧼 All files cleaned. 🧼${NC}"
 
 # 're' target
 re: fclean all

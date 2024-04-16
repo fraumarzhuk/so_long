@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/16 14:09:59 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:28:25 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct collects
 {
 	int x;
 	int y;
-	struct collectibles *next;
+	struct collects *next;
 }	t_collects;
 
 typedef struct args
@@ -45,7 +45,7 @@ typedef struct args
 	int exit_x;
 	int exit_y;
 	char **map;
-	t_collects collects;
+	t_collects *collects;
 	
 } t_args;
 
@@ -56,5 +56,6 @@ int		map_validation(char *argv, t_args *args);
 int		check_walls(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
+int		find_collectibles(t_args *args);
 
 #endif

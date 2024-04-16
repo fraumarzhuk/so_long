@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/16 14:10:26 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:32:38 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int map_validation(char *argv, t_args *args)
 	check_walls(args);
 	find_player(args);
 	find_exit(args);
+	find_collectibles(args);
 	return (1);
 }
 
@@ -181,4 +182,45 @@ int is_rectangular(t_args *args)
 		i++;
 	}
 	return (1);
+}
+
+int find_collectibles(t_args *args)
+{
+	int x;
+	int y;
+	bool found;
+	t_collects *curr;
+
+	x = 0;
+	y = 0;
+	
+	curr = args->collects;
+	found = false;
+	curr = malloc(sizeof(t_collects));
+	while (y < args->line_count)
+	{
+		while(args->map[y][x] != '\n' && args->map[y][x])
+		{
+			if(args->map[y][x] == 'C')
+			{
+				
+				if (args->map[y][x] == 'C' && found)
+				{
+					curr = curr->next;
+					curr = malloc(sizeof(t_collects));
+					curr->next = NULL;
+				}
+				curr->x = x;
+				curr->y = y;
+				found = true;
+				printf("collectible: x = %i, y = %i\n", curr->x, curr->y);
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	if (!found)
+		so_short_error("No collectibles found.");
+	return(1);
 }
