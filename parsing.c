@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/15 15:55:43 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:10:26 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int find_exit(t_args *args)
 int is_rectangular(t_args *args)
 {
 	int	i;
-	int line_len;
+	size_t line_len;
 	
 	i = 0;
 	line_len = ft_strlen(args->map[i]);

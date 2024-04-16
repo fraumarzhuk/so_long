@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/15 15:20:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:09:59 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct map
 	
 }	t_map;
 
+typedef struct collects
+{
+	int x;
+	int y;
+	struct collectibles *next;
+}	t_collects;
+
 typedef struct args
 {
 	int line_count;
@@ -38,6 +45,7 @@ typedef struct args
 	int exit_x;
 	int exit_y;
 	char **map;
+	t_collects collects;
 	
 } t_args;
 
