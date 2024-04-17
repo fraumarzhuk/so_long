@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/16 15:28:25 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:02:24 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct collects
 	struct collects *next;
 }	t_collects;
 
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 typedef struct args
 {
 	int line_count;
@@ -45,10 +54,13 @@ typedef struct args
 	int exit_x;
 	int exit_y;
 	char **map;
+	bool collects_found;
+	int collects_amount;
 	t_collects *collects;
 	
 } t_args;
 
+//Parsing
 int		map_init(t_args *args);
 int		insert_end(t_map **map, t_args *args);
 void	so_short_error(char *str);
@@ -57,5 +69,9 @@ int		check_walls(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
+
+//Rendering
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 
 #endif

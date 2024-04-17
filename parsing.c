@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/16 15:32:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:12:55 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,14 +188,14 @@ int find_collectibles(t_args *args)
 {
 	int x;
 	int y;
-	bool found;
 	t_collects *curr;
 
 	x = 0;
 	y = 0;
 	
 	curr = args->collects;
-	found = false;
+	args->collects_found = false;
+	args->collects_amount = 0;
 	curr = malloc(sizeof(t_collects));
 	while (y < args->line_count)
 	{
@@ -204,7 +204,7 @@ int find_collectibles(t_args *args)
 			if(args->map[y][x] == 'C')
 			{
 				
-				if (args->map[y][x] == 'C' && found)
+				if (args->map[y][x] == 'C' && args->collects_found)
 				{
 					curr = curr->next;
 					curr = malloc(sizeof(t_collects));
@@ -212,15 +212,18 @@ int find_collectibles(t_args *args)
 				}
 				curr->x = x;
 				curr->y = y;
-				found = true;
-				printf("collectible: x = %i, y = %i\n", curr->x, curr->y);
+				args->collects_found = true;
+				args->collects_amount++;
+				printf("collectible: x = %i, y = %i, collects amount: %i\n", curr->x, curr->y, args->collects_amount);
 			}
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	if (!found)
+	if (!args->collects_found)
 		so_short_error("No collectibles found.");
 	return(1);
 }
+
+// Add the function is_solvable()!
