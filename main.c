@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/17 17:02:11 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:50:14 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "So long!");
 	img = malloc(sizeof(t_data));
 	render_walls(img, mlx, mlx_win, args);
+	render_background(img, mlx, mlx_win, args);
 	mlx_loop(mlx);
 	return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/17 17:02:24 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:49:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int		find_collectibles(t_args *args);
 //Rendering
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
+void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 
 #endif
