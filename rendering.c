@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:35:09 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/22 12:50:18 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:45:03 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,12 @@ void render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 		x = 0;
 		y++;
 	}
+}
+
+void render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args)
+{
+	render_walls(img, mlx, mlx_win, args);
+	render_background(img, mlx, mlx_win, args);
+	render_collects(img, mlx, mlx_win, args);
+	render_exit(img, mlx, mlx_win, args);
 }

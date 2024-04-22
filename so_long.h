@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/22 15:27:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:12:49 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,15 @@ typedef struct args
 	char **map;
 	bool collects_found;
 	int collects_amount;
-	t_collects *collects;
-	
+	t_collects *collects;	
 } t_args;
+
+typedef struct {
+    t_args *args;
+    t_data *img;
+    void *mlx;
+    void *mlx_win;
+} t_env;
 
 //Parsing
 int		map_init(t_args *args);
@@ -89,6 +95,7 @@ void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
+void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 //Render player
 void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*player_path);
 #endif

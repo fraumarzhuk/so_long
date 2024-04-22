@@ -6,31 +6,29 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/22 15:35:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:13:07 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int frameupdate(t_args *args, t_data *img, void *mlx, void *mlx_win)
+int frameupdate(t_env *env)
 {
-    args->frame++;
-    if(args->frame >= 50)
+    env->args->frame++;
+    if(env->args->frame >= 2000)
     {
-        if (img->is_player_2)
+        if (env->img->is_player_2)
         {
-            img->player_pic_path = "./img/player/player_1.xpm";
-            img->is_player_2 = false;
-    		printf("check1\n");
+            env->img->player_pic_path = "./img/player/player_1.xpm";
+            env->img->is_player_2 = false;
         }
         else
         {
-            img->player_pic_path = "./img/player/player_2.xpm";
-            img->is_player_2 = true;
-			printf("check2\n");
+            env->img->player_pic_path = "./img/player/player_2.xpm";
+            env->img->is_player_2 = true;
         }
-        render_player(img, mlx, mlx_win, args, img->player_pic_path);
-        args->frame = 0;
+        render_player(env->img, env->mlx, env->mlx_win, env->args, env->img->player_pic_path);
+        env->args->frame = 0;
     }
     return (0);
 }
@@ -60,15 +58,13 @@ int	main(int argc, char **argv)
 		so_short_error("Malloc failed!");
 	img->height = 1080;
 	img->width = 1920;
-	render_walls(img, mlx, mlx_win, args);
-	render_background(img, mlx, mlx_win, args);
-	render_collects(img, mlx, mlx_win, args);
-	render_exit(img, mlx, mlx_win, args);
+	render_everything(img, mlx, mlx_win, args);
 
 	args->frame = 0;
 	img->player_pic_path = "./img/player/player_1.xpm";
 	img->is_player_2 = false;
-	mlx_loop_hook(mlx, frameupdate, args);
+	t_env env = {args, img, mlx, mlx_win};
+	mlx_loop_hook(mlx, frameupdate, &env);
 	mlx_loop(mlx);
 	return(0);
 }
