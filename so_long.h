@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/19 15:49:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:57:17 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "./libft/printf/ft_printf.h"
 # include "./gnl/get_next_line_bonus.h"
 
+// map for parsing the map
 typedef struct map
 {
 	char *line;
@@ -29,6 +30,7 @@ typedef struct map
 	
 }	t_map;
 
+//linked list with collectibles
 typedef struct collects
 {
 	int x;
@@ -36,6 +38,7 @@ typedef struct collects
 	struct collects *next;
 }	t_collects;
 
+//the window scene(maybe rename it)
 typedef struct	s_data
 {
 	void	*img;
@@ -43,8 +46,12 @@ typedef struct	s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
+	int		color;
 }				t_data;
 
+// game itself, important info about 
 typedef struct args
 {
 	int line_count;
@@ -63,6 +70,7 @@ typedef struct args
 //Parsing
 int		map_init(t_args *args);
 int		insert_end(t_map **map, t_args *args);
+
 void	so_short_error(char *str);
 int		map_validation(char *argv, t_args *args);
 int		check_walls(t_args *args);
@@ -74,5 +82,7 @@ int		find_collectibles(t_args *args);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args);
+void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args);
+void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 
 #endif
