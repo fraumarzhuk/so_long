@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/22 11:57:17 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:27:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,16 @@ typedef struct	s_data
 	int		height;
 	int		width;
 	int		color;
+	char *player_pic_path;
+	bool is_player_2;
 }				t_data;
 
 // game itself, important info about 
 typedef struct args
 {
+	int frame;
+	
+	int line_len;
 	int line_count;
 	int fd;
 	int player_x;
@@ -84,5 +89,6 @@ void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
-
+//Render player
+void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*player_path);
 #endif

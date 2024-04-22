@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/17 16:12:55 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:34:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int find_player(t_args *args)
 	}
 	if (!found)
 		return (0);
-	printf("location: x = %i, y = %i\n", args->player_x, args->player_y);
+	/* printf("location: x = %i, y = %i\n", args->player_x, args->player_y); */
 	return (1);
 }
 
@@ -164,7 +164,7 @@ int find_exit(t_args *args)
 	}
 	if (!found)
 		return (0);
-	printf("location exit: x = %i, y = %i\n", args->exit_x, args->exit_y);
+	/* printf("location exit: x = %i, y = %i\n", args->exit_x, args->exit_y); */
 	return (1);
 }
 
@@ -214,7 +214,7 @@ int find_collectibles(t_args *args)
 				curr->y = y;
 				args->collects_found = true;
 				args->collects_amount++;
-				printf("collectible: x = %i, y = %i, collects amount: %i\n", curr->x, curr->y, args->collects_amount);
+				/* printf("collectible: x = %i, y = %i, collects amount: %i\n", curr->x, curr->y, args->collects_amount); */
 			}
 			x++;
 		}
