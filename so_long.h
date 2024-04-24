@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/24 12:42:21 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:52:52 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct	s_data
 	int		width;
 	int		color;
 	char *player_pic_path;
+/* 	bool player_forward; */
+	bool player_back;
 	bool is_player_2;
 }				t_data;
 

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:09:48 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/24 12:35:55 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:53:19 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ int key_press(int keycode, t_env *env)
 		{
 			env->args->player_x++;
 			check_collects(env);
+/* 			env->img->player_forward = true; */
+			env->img->player_back = false;
 			render_everything(env->img, env->mlx, env->mlx_win, env->args);
-			printf("Player pos: %i\n", env->args->player_x);
+			env->args->moves++;
+			printf("Moves: %i\n", env->args->moves);
 		}
 			
 	}
@@ -39,7 +42,10 @@ int key_press(int keycode, t_env *env)
 		{
 			env->args->player_x--;
 			check_collects(env);
+			env->img->player_back = true;
 			render_everything(env->img, env->mlx, env->mlx_win, env->args);
+			env->args->moves++;
+			printf("Moves: %i\n", env->args->moves);
 		}
 	}
 	//move_up
@@ -49,7 +55,9 @@ int key_press(int keycode, t_env *env)
 		{
 			env->args->player_y--;
 			check_collects(env);
-			render_everything(env->img, env->mlx, env->mlx_win, env->args);	
+			render_everything(env->img, env->mlx, env->mlx_win, env->args);
+			env->args->moves++;
+			printf("Moves: %i\n", env->args->moves);
 		}
 	}
 	//move_down
@@ -60,6 +68,8 @@ int key_press(int keycode, t_env *env)
 			env->args->player_y++;
 			check_collects(env);
 			render_everything(env->img, env->mlx, env->mlx_win, env->args);
+			env->args->moves++;
+			printf("Moves: %i\n", env->args->moves);
 		}
 	}
     return (0);
