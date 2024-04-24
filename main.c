@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/22 16:13:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:35:38 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int	main(int argc, char **argv)
 	img->height = 1080;
 	img->width = 1920;
 	render_everything(img, mlx, mlx_win, args);
-
 	args->frame = 0;
 	img->player_pic_path = "./img/player/player_1.xpm";
 	img->is_player_2 = false;
 	t_env env = {args, img, mlx, mlx_win};
 	mlx_loop_hook(mlx, frameupdate, &env);
+	mlx_key_hook(mlx_win, key_press, &env);
 	mlx_loop(mlx);
 	return(0);
 }

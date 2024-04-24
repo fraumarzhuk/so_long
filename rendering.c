@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:35:09 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/22 16:45:03 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:35:47 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,15 @@ void render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 }
 void render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 {
-	char	*relative_path = "./img/door_open.xpm";
+	char	*img_path = "./img/door_closed.xpm";
 	int		img_width = 65;
 	int		img_height = 65;
 	int x = 0;
 	int y = 0;
 
-	img->img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
+	if (args->collects_collected == true)
+		img_path = "./img/door_open.xpm";
+	img->img = mlx_xpm_file_to_image(mlx, img_path, &img_width, &img_height);
 
 
 	while (y < args->line_count)

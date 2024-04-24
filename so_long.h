@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/22 16:12:49 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:42:21 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ typedef struct args
 	int exit_y;
 	char **map;
 	bool collects_found;
+	bool collects_collected;
 	int collects_amount;
+	int moves;
 	t_collects *collects;	
 } t_args;
 
@@ -98,4 +100,7 @@ void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 //Render player
 void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*player_path);
+//events
+int key_press(int keycode, t_env *env);
+void check_collects(t_env *env);
 #endif
