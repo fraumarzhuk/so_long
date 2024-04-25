@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/25 11:46:08 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:53:38 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void player_back(t_env *env)
 
 void check_on_exit(t_env *env)
 {
+	printf("Player x: %i, player y: %i\n", env->args->player_x, env->args->player_y);
+	printf("Exit x: %i, exit y: %i\n", env->args->exit_x, env->args->exit_y);
 	if ((env->args->player_x == env->args->exit_x) && (env->args->player_y == env->args->exit_y))
 	{
 		if (env->args->collects_collected == true)
@@ -49,8 +51,10 @@ void check_on_exit(t_env *env)
 			exit(0);
 		}
 		env->img->player_pic_path = "./img/player/player_exit.xpm";
-		env->img->player_back = true;
+		env->img->player_exit = true;
 	}
+	else
+		env->img->player_exit = false;
 }
 
 int frameupdate(t_env *env)
@@ -59,9 +63,9 @@ int frameupdate(t_env *env)
     if(env->args->frame >= 2000)
     {
 		check_on_exit(env);
-		if (env->img->player_back == true)
+		if (env->img->player_back == true && env->img->player_exit == false)
 			player_back(env);
-		else if (env->img->player_back == false)
+		else if (env->img->player_back == false && env->img->player_exit == false)
 			player_forward(env);
         render_player(env->img, env->mlx, env->mlx_win, env->args, env->img->player_pic_path);
         env->args->frame = 0;
@@ -107,3 +111,7 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx);
 	return(0);
 }
+
+//TODO:
+//Map check is_solvable
+//Map check is too big
