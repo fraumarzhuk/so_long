@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/24 12:58:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:46:08 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,29 @@ void player_back(t_env *env)
 {
 	    if (env->img->is_player_2)
         {
-            env->img->player_pic_path = "./img/player/player_1.xpm";
+            env->img->player_pic_path = "./img/player/player_3.xpm";
             env->img->is_player_2 = false;
         }
         else
         {
-            env->img->player_pic_path = "./img/player/player_2.xpm";
+            env->img->player_pic_path = "./img/player/player_4.xpm";
             env->img->is_player_2 = true;
         }
+}
+
+void check_on_exit(t_env *env)
+{
+	if ((env->args->player_x == env->args->exit_x) && (env->args->player_y == env->args->exit_y))
+	{
+		if (env->args->collects_collected == true)
+		{
+			render_player(env->img, env->mlx, env->mlx_win, env->args, "./img/player/player_exit.xpm");
+			mlx_destroy_window(env->mlx, env->mlx_win);
+			exit(0);
+		}
+		env->img->player_pic_path = "./img/player/player_exit.xpm";
+		env->img->player_back = true;
+	}
 }
 
 int frameupdate(t_env *env)
@@ -43,9 +58,10 @@ int frameupdate(t_env *env)
     env->args->frame++;
     if(env->args->frame >= 2000)
     {
+		check_on_exit(env);
 		if (env->img->player_back == true)
 			player_back(env);
-		else
+		else if (env->img->player_back == false)
 			player_forward(env);
         render_player(env->img, env->mlx, env->mlx_win, env->args, env->img->player_pic_path);
         env->args->frame = 0;
@@ -84,6 +100,7 @@ int	main(int argc, char **argv)
 	args->frame = 0;
 	img->player_pic_path = "./img/player/player_1.xpm";
 	img->is_player_2 = false;
+	img->player_back = false;
 	t_env env = {args, img, mlx, mlx_win};
 	mlx_loop_hook(mlx, frameupdate, &env);
 	mlx_key_hook(mlx_win, key_press, &env);
