@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/29 15:42:37 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:36:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int map_validation(char *argv, t_args *args)
 	find_collectibles(args);
 	if (is_solvable(args))
 		free_split(args->map_copy);
-	if (args->line_len > 76 || args->line_count > 43)
-		so_short_error("Map is too big.", args, true);
+/* 	if (args->line_len > 76 || args->line_count > 43)
+		so_short_error("Map is too big.", args, true); */
 	return (1);
 }
 
@@ -237,6 +237,13 @@ int is_solvable(t_args *args)
 {
     my_ff(args, args->player_x, args->player_y);
 	int i = 0;
+/* 	while (i < args->line_count)
+	{
+		printf("%s", args->map_copy[i]);
+		i++;
+	}
+	printf("\n");	 */	
+	i = 0;
 	while (i < args->line_count)
 	{
 		if (ft_strchr(args->map_copy[i], 'C') || ft_strchr(args->map_copy[i], 'E'))
@@ -252,8 +259,8 @@ int is_solvable(t_args *args)
 void my_ff(t_args *args, int x, int y)
 {
 
-	if (x > args->line_len || y > args->line_count)
-        return ;
+/* 	if (x > args->line_len || y > args->line_count)
+        return ; */
 	if (args->map_copy[y][x] == '1' || args->map_copy[y][x] == 'X')
 	 	return ; 
     args->map_copy[y][x] = 'X';
