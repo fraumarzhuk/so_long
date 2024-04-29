@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/29 14:47:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:26:41 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int map_validation(char *argv, t_args *args)
 	find_player(args);
 	find_exit(args);
 	find_collectibles(args);
-	is_solvable(args);
+	if (is_solvable(args))
+		free_split(args->map_copy);
 	return (1);
 }
 
@@ -123,7 +124,7 @@ int find_player(t_args *args)
 			if(args->map[y][x] == 'P')
 			{
 				if (args->map[y][x] == 'P' && found)
-					so_short_error("Two many players!", args, true);
+					so_short_error("Too many players!", args, true);
 				args->player_x = x;
 				args->player_y = y;
 				found = true;
@@ -236,27 +237,28 @@ int is_solvable(t_args *args)
 	int i = 0;
 	while (i < args->line_count)
 	{
-		printf("%s", args->map_copy[i]);
+		if (ft_strchr(args->map_copy[i], 'C') || ft_strchr(args->map_copy[i], 'E'))
+		{
+			free_split(args->map_copy);
+			so_short_error("Map cannot be solved.", args, true);
+		}	
 		i++;
 	}
-	printf("\n");		
     return(1);
 }
 
-int my_ff(t_args *args, int x, int y)
+void my_ff(t_args *args, int x, int y)
 {
-	printf("check\n");
-    if (x < 0 || y < 0 || x >= args->line_len || y >= args->line_count)
-        return 0;
-    if (args->map_copy[y][x] != '0' && args->map_copy[y][x] != 'C' && args->map_copy[y][x] != 'E')
-        return 0;
+
+	if (x > args->line_len || y > args->line_count)
+        return ;
+	if (args->map_copy[y][x] == '1' || args->map_copy[y][x] == 'X')
+	 	return ; 
     args->map_copy[y][x] = 'X';
     my_ff(args, x + 1, y);
     my_ff(args, x, y + 1);
     my_ff(args, x - 1, y);
     my_ff(args, x, y - 1);
-	
 
-    return 1;
+    return ;
 }
- 

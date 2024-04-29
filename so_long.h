@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/29 14:31:27 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:05:05 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		check_walls(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
-int		my_ff(t_args *args, int x, int y);
+void		my_ff(t_args *args, int x, int y);
 int		is_solvable(t_args *args);
 
 
