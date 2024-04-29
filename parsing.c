@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/29 15:26:41 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:42:37 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int map_validation(char *argv, t_args *args)
 	find_collectibles(args);
 	if (is_solvable(args))
 		free_split(args->map_copy);
+	if (args->line_len > 76 || args->line_count > 43)
+		so_short_error("Map is too big.", args, true);
 	return (1);
 }
 
