@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/25 11:53:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/29 09:32:39 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void player_back(t_env *env)
 
 void check_on_exit(t_env *env)
 {
-	printf("Player x: %i, player y: %i\n", env->args->player_x, env->args->player_y);
-	printf("Exit x: %i, exit y: %i\n", env->args->exit_x, env->args->exit_y);
 	if ((env->args->player_x == env->args->exit_x) && (env->args->player_y == env->args->exit_y))
 	{
 		if (env->args->collects_collected == true)
@@ -82,21 +80,21 @@ int	main(int argc, char **argv)
 	
 	args = malloc(sizeof(t_args));
 	if (!args)
-    	so_short_error("Malloc failed!");
+    	so_short_error("Malloc failed!", args);
 	if (argc != 2)
-		so_short_error("Incorrect amount of arguments.");
+		so_short_error("Incorrect amount of arguments.", args);
 	args->fd = open(argv[1], O_RDONLY);
 	if (args->fd < 0 || read(args->fd, 0, 0) < 0)
-		so_short_error("Error reading a file.");
+		so_short_error("Error reading a file.", args);
 	if (!map_init(args))
-		so_short_error("Error initing a map.");
+		so_short_error("Error initing a map.", args);
 	map_validation(argv[1], args);
 	mlx = mlx_init();
 	args->line_len = ft_strlen(&args->map[0][0]) - 1;
 	mlx_win = mlx_new_window(mlx, args->line_len * 65, args->line_count * 65, "So long!");
 	img = malloc(sizeof(t_data));
 	if (!img)
-		so_short_error("Malloc failed!");
+		so_short_error("Malloc failed!", args);
 	img->height = 1080;
 	img->width = 1920;
 	render_everything(img, mlx, mlx_win, args);

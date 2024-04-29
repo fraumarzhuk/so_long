@@ -36,6 +36,7 @@ SRCS =  ft_calloc.c \
         ft_strmapi.c \
         ft_strtrim.c \
         ft_isalnum.c \
+		utils.c \
         printf/ft_printf.c \
         printf/input_len.c \
         printf/to_char.c \
