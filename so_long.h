@@ -6,13 +6,13 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/29 15:05:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:35:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 
-#define SO_LONG_H
+# define SO_LONG_H
 
 # include <fcntl.h>
 # include <stdbool.h>
@@ -25,21 +25,20 @@
 // map for parsing the map
 typedef struct map
 {
-	char *line;
-	struct map *next;
-	
+	char		*line;
+	struct map	*next;
 }	t_map;
 
 //linked list with collectibles
 typedef struct collects
 {
-	int x;
-	int y;
-	struct collects *next;
+	int				x;
+	int				y;
+	struct collects	*next;
 }	t_collects;
 
 //the window scene(maybe rename it)
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -49,40 +48,40 @@ typedef struct	s_data
 	int		height;
 	int		width;
 	int		color;
-	char *player_pic_path;
+	char	*player_pic_path;
 /* 	bool player_forward; */
-	bool player_back;
-	bool is_player_2;
-	bool player_exit;
+	bool	player_back;
+	bool	is_player_2;
+	bool	player_exit;
 }				t_data;
 
 // game itself, important info about 
 typedef struct args
 {
-	int frame;
-	
-	int line_len;
-	int line_count;
-	int fd;
-	int player_x;
-	int player_y;
-	int exit_x;
-	int exit_y;
-	char **map;
-	char **map_copy;
-	bool collects_found;
-	bool collects_collected;
-	int collects_amount;
-	int moves;
-	t_collects *collects;
-} t_args;
+	int			frame;	
+	int			line_len;
+	int			line_count;
+	int			fd;
+	int			player_x;
+	int			player_y;
+	int			exit_x;
+	int			exit_y;
+	char		**map;
+	char		**map_copy;
+	bool		collects_found;
+	bool		collects_collected;
+	int			collects_amount;
+	int			moves;
+	t_collects	*collects;
+}	t_args;
 
-typedef struct {
-    t_args *args;
-    t_data *img;
-    void *mlx;
-    void *mlx_win;
-} t_env;
+typedef struct s_env
+{
+	t_args	*args;
+	t_data	*img;
+	void	*mlx;
+	void	*mlx_win;
+}	t_env;
 
 //Parsing
 int		map_init(t_args *args);
@@ -94,9 +93,8 @@ int		check_walls(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
-void		my_ff(t_args *args, int x, int y);
+void	my_ff(t_args *args, int x, int y);
 int		is_solvable(t_args *args);
-
 
 //Rendering
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -108,6 +106,6 @@ void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 //Render player
 void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*player_path);
 //events
-int key_press(int keycode, t_env *env);
-void check_collects(t_env *env);
+int		key_press(int keycode, t_env *env);
+void	check_collects(t_env *env);
 #endif
