@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 11:35:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:04:06 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,6 @@ void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*pl
 //events
 int		key_press(int keycode, t_env *env);
 void	check_collects(t_env *env);
+void	move_on_y(t_env *env, int y, int x, int sign);
+void	move_on_x(t_env *env, int y, int x, int sign);
 #endif
