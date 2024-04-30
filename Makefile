@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
+CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -fsanitize=address
 MLXFLAGS = -framework OpenGL -framework AppKit
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
@@ -12,7 +12,7 @@ YELLOW=\033[0;33m
 NC=\033[0m # No Color
 
 # Source files
-SRCS = main.c parsing.c errors.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c rendering.c render_player.c events.c
+SRCS = main.c parsing.c errors.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c rendering.c render_player.c events.c utils.c
 OBJS = $(SRCS:.c=.o)
 
 # 'all' target

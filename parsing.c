@@ -6,30 +6,12 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/29 16:36:43 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:46:37 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int insert_end(t_map **map, t_args *args)
-{
-	t_map *new_node;
-	t_map *curr;
-	
-	curr = *map;
-	new_node = ft_calloc(sizeof(t_map), 1);
-	if (!new_node)
-		so_short_error("Malloc failed!", args, false);
-	new_node->next = NULL;
-	while (curr->next)
-		curr = curr->next;
-	curr->next = new_node;
-	new_node->line = get_next_line(args->fd);
-	if (!new_node->line)
-		return (0);
-	return(1);
-}
 
 int map_init(t_args *args)
 { 
@@ -61,12 +43,13 @@ int map_init(t_args *args)
 	}
 	args->map[i] = NULL;
 	args->map_copy[i] = NULL;
+	args->line_len = (int)ft_strlen(args->map[0]);
 	return (1);
 }
 
-int map_validation(char *argv, t_args *args)
+int	map_validation(char *argv, t_args *args)
 {
-	char *res;
+	char	*res;
 
 	res = &argv[ft_strlen(argv) - 4];
 	if (ft_strncmp(res, ".ber", 4) != 0)
@@ -75,16 +58,18 @@ int map_validation(char *argv, t_args *args)
 	find_player(args);
 	find_exit(args);
 	find_collectibles(args);
+	is_rectangular(args);
 	if (is_solvable(args))
 		free_split(args->map_copy);
-/* 	if (args->line_len > 76 || args->line_count > 43)
-		so_short_error("Map is too big.", args, true); */
+	if (args->line_len > 76 || args->line_count > 43)
+		so_short_error("Map is too big.", args, true);
 	return (1);
 }
 
-int check_walls(t_args *args)
+int	check_walls(t_args *args)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (args->map[0][i] != '\n')
 	{
@@ -102,28 +87,28 @@ int check_walls(t_args *args)
 	i = 0;
 	while (i < args->line_count)
 	{
-		if (args->map[i][0] != '1' || args->map[i][ft_strlen(args->map[i]) -2] != '1')
+		if (args->map[i][0] != '1' ||
+			args->map[i][ft_strlen(args->map[i]) - 2] != '1')
 			so_short_error("Incorrect wall", args, true);
 		i++;
 	}
-	return (1);	
+	return (1);
 }
 
 int find_player(t_args *args)
 {
-	int	x;
-	int	y;
-	bool found;
+	int		x;
+	int		y;
+	bool	found;
 
 	x = 0;
 	y = 0;
-	found = false;
-	
+	found = false;	
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
-			if(args->map[y][x] == 'P')
+			if (args->map[y][x] == 'P')
 			{
 				if (args->map[y][x] == 'P' && found)
 					so_short_error("Too many players!", args, true);
@@ -138,25 +123,23 @@ int find_player(t_args *args)
 	}
 	if (!found)
 		return (0);
-	/* printf("location: x = %i, y = %i\n", args->player_x, args->player_y); */
 	return (1);
 }
 
-int find_exit(t_args *args)
+int	find_exit(t_args *args)
 {
-	int	x;
-	int	y;
-	bool found;
+	int		x;
+	int		y;
+	bool	found;
 
 	x = 0;
 	y = 0;
 	found = false;
-	
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
-			if(args->map[y][x] == 'E')
+			if (args->map[y][x] == 'E')
 			{
 				if (args->map[y][x] == 'E' && found)
 					so_short_error("Two many exits!", args, true);
@@ -171,46 +154,42 @@ int find_exit(t_args *args)
 	}
 	if (!found)
 		return (0);
-	/* printf("location exit: x = %i, y = %i\n", args->exit_x, args->exit_y); */
 	return (1);
 }
-
 int is_rectangular(t_args *args)
 {
-	int	i;
-	size_t line_len;
-	
+	int		i;
+
 	i = 0;
-	line_len = ft_strlen(args->map[i]);
-	while (i < args->line_count)
+	while (i < args->line_count - 1)
 	{
-		if (ft_strlen(args->map[i]) != line_len)
+		if ((int)ft_strlen(args->map[i]) != args->line_len)
 			so_short_error("Map is not a rectangle!", args, true);
 		i++;
 	}
+	if (((int)ft_strlen(args->map[i]) + 1) != args->line_len)
+			so_short_error("Map is not a rectangle!", args, true);
 	return (1);
 }
 
-int find_collectibles(t_args *args)
+int	find_collectibles(t_args *args)
 {
-	int x;
-	int y;
-	t_collects *curr;
+	int			x;
+	int			y;
+	t_collects	*curr;
 
 	x = 0;
 	y = 0;
-	
 	curr = args->collects;
 	args->collects_found = false;
 	args->collects_amount = 0;
 	curr = malloc(sizeof(t_collects));
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
-			if(args->map[y][x] == 'C')
-			{
-				
+			if (args->map[y][x] == 'C')
+			{			
 				if (args->map[y][x] == 'C' && args->collects_found)
 				{
 					curr = curr->next;
@@ -221,7 +200,6 @@ int find_collectibles(t_args *args)
 				curr->y = y;
 				args->collects_found = true;
 				args->collects_amount++;
-				/* printf("collectible: x = %i, y = %i, collects amount: %i\n", curr->x, curr->y, args->collects_amount); */
 			}
 			x++;
 		}
@@ -230,19 +208,20 @@ int find_collectibles(t_args *args)
 	}
 	if (!args->collects_found)
 		so_short_error("No collectibles found.", args, true);
-	return(1);
+	return (1);
 }
 
 int is_solvable(t_args *args)
 {
     my_ff(args, args->player_x, args->player_y);
-	int i = 0;
-/* 	while (i < args->line_count)
+	int i;
+/* 	int i = 0;
+ 	while (i < args->line_count)
 	{
 		printf("%s", args->map_copy[i]);
 		i++;
 	}
-	printf("\n");	 */	
+	printf("\n"); */
 	i = 0;
 	while (i < args->line_count)
 	{
@@ -254,20 +233,4 @@ int is_solvable(t_args *args)
 		i++;
 	}
     return(1);
-}
-
-void my_ff(t_args *args, int x, int y)
-{
-
-/* 	if (x > args->line_len || y > args->line_count)
-        return ; */
-	if (args->map_copy[y][x] == '1' || args->map_copy[y][x] == 'X')
-	 	return ; 
-    args->map_copy[y][x] = 'X';
-    my_ff(args, x + 1, y);
-    my_ff(args, x, y + 1);
-    my_ff(args, x - 1, y);
-    my_ff(args, x, y - 1);
-
-    return ;
 }

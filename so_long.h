@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 12:04:06 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:21:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,27 +85,31 @@ typedef struct s_env
 
 //Parsing
 int		map_init(t_args *args);
-int		insert_end(t_map **map, t_args *args);
 
-void	so_short_error(char *str, t_args *args, bool collected);
 int		map_validation(char *argv, t_args *args);
 int		check_walls(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
-void	my_ff(t_args *args, int x, int y);
 int		is_solvable(t_args *args);
+int		is_rectangular(t_args *args);
 
 //Rendering
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args);
+
+//Utils
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_ff(t_args *args, int x, int y);
+int		insert_end(t_map **map, t_args *args);
+//Errors
+void	so_short_error(char *str, t_args *args, bool collected);
 //Render player
 void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*player_path);
-//events
+//Events
 int		key_press(int keycode, t_env *env);
 void	check_collects(t_env *env);
 void	move_on_y(t_env *env, int y, int x, int sign);

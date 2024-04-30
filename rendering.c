@@ -6,60 +6,62 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:35:09 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/24 12:35:47 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:56:30 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 {
-	char	*dst;
+	char	*relative_path;
+	int		img_width;
+	int		img_height;
+	int		x;
+	int		y;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args)
-{
-	char	*relative_path = "./img/stones.xpm";
-	int		img_width = 65;
-	int		img_height = 65;
-	int x = 0;
-	int y = 0;
-
-	img->img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-
-
+	img_width = 65;
+	img_height = 65;
+	x = 0;
+	y = 0;
+	relative_path = "./img/stones.xpm";
+	img->img = mlx_xpm_file_to_image(mlx, relative_path,
+			&img_width, &img_height);
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
 			if (args->map[y][x] == '1')
-					mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
+				mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
 }
-void render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args)
+
+void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 {
-	char	*relative_path = "./img/bg.xpm";
-	int		img_width = 65;
-	int		img_height = 65;
-	int x = 0;
-	int y = 0;
+	char	*relative_path;
+	int		img_width;
+	int		img_height;
+	int		x;
+	int		y;
 
-	img->img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-
-
+	img_width = 65;
+	img_height = 65;
+	x = 0;
+	y = 0;
+	relative_path = "./img/bg.xpm";
+	img->img = mlx_xpm_file_to_image(mlx, relative_path,
+			&img_width, &img_height);
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
-			if (args->map[y][x] == '0' || args->map[y][x] == 'C' || args->map[y][x] == 'P' || args->map[y][x] == 'E')
-					mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
+			if (args->map[y][x] == '0' || args->map[y][x] == 'C' ||
+				args->map[y][x] == 'P' || args->map[y][x] == 'E')
+				mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
 			x++;
 		}
 		x = 0;
@@ -67,48 +69,56 @@ void render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 	}
 }
 
-void render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args)
+void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 {
-	char	*relative_path = "./img/coin.xpm";
-	int		img_width = 65;
-	int		img_height = 65;
-	int x = 0;
-	int y = 0;
+	char	*relative_path;
+	int		img_width;
+	int		img_height;
+	int		x;
+	int		y;
 
-	img->img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-
-
+	img_width = 65;
+	img_height = 65;
+	x = 0;
+	y = 0;
+	relative_path = "./img/coin.xpm";
+	img->img = mlx_xpm_file_to_image(mlx, relative_path,
+			&img_width, &img_height);
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
 			if (args->map[y][x] == 'C')
-					mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
+				mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
 }
-void render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
-{
-	char	*img_path = "./img/door_closed.xpm";
-	int		img_width = 65;
-	int		img_height = 65;
-	int x = 0;
-	int y = 0;
 
+void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
+{
+	char	*img_path;
+	int		img_width;
+	int		img_height;
+	int		x;
+	int		y;
+
+	img_width = 65;
+	img_height = 65;
+	x = 0;
+	y = 0;
+	img_path = "./img/door_closed.xpm";
 	if (args->collects_collected == true)
 		img_path = "./img/door_open.xpm";
 	img->img = mlx_xpm_file_to_image(mlx, img_path, &img_width, &img_height);
-
-
 	while (y < args->line_count)
 	{
-		while(args->map[y][x] != '\n' && args->map[y][x])
+		while (args->map[y][x] != '\n' && args->map[y][x])
 		{
 			if (args->map[y][x] == 'E')
-					mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
+				mlx_put_image_to_window(mlx, mlx_win, img->img, x * 65, y * 65);
 			x++;
 		}
 		x = 0;
@@ -116,7 +126,7 @@ void render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 	}
 }
 
-void render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args)
+void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 {
 	render_walls(img, mlx, mlx_win, args);
 	render_background(img, mlx, mlx_win, args);
