@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 17:31:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:06:55 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	map_init(t_args *args)
 		so_short_error("Malloc failed!", args, false);
 	map->line = get_next_line(args->fd);
 	if (!map->line)
-		so_short_error("Empty map!", args, true);
+		so_short_error("Empty map!", args, false);
 	args->line_count++;
 	map->next = NULL;
 	while (insert_end(&map, args) != 0)
@@ -35,13 +35,14 @@ int	map_validation(char *argv, t_args *args)
 {
 	char	*res;
 
-	res = &argv[ft_strlen(argv) - 4];
+	res = &argv[(int)ft_strlen(argv) - 4];
 	if (ft_strncmp(res, ".ber", 4) != 0)
-		so_short_error("Incorrect map format!", args, true);
+		so_short_error("Incorrect map format!", args, false);
 	check_walls(args);
 	find_player(args);
 	find_exit(args);
 	find_collectibles(args);
+	check_random_chars(args);
 	is_rectangular(args);
 	if (is_solvable(args))
 		free_split(args->map_copy);

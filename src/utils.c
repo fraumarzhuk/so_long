@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:56:39 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 17:31:55 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:13:06 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 void	my_ff(t_args *args, int x, int y)
 {
 	if (x > args->line_len || y > args->line_count)
+		return ;
+	if (args->map_copy[y][x] == '\n' || args->map_copy[y][x] == '\0')
 		return ;
 	if (args->map_copy[y][x] == '1' || args->map_copy[y][x] == 'X')
 		return ;
@@ -72,4 +74,29 @@ void	copy_map(t_args *args, t_map *map)
 	args->map[i] = NULL;
 	args->map_copy[i] = NULL;
 	args->line_len = (int)ft_strlen(args->map[0]);
+}
+
+int	check_random_chars(t_args *args)
+{
+	args->x = 0;
+	args->y = 0;
+	while (args->y < args->line_count)
+	{
+		while (args->map[args->y][args->x] != '\n'
+			&& args->map[args->y][args->x])
+		{
+			if (args->map[args->y][args->x] != '0'
+				&& args->map[args->y][args->x] != '1'
+				&& args->map[args->y][args->x] != 'C'
+				&& args->map[args->y][args->x] != 'P'
+				&& args->map[args->y][args->x] != 'E')
+			{
+				so_short_error("Incorrect map!", args, true);
+			}
+			args->x++;
+		}
+		args->x = 0;
+		args->y++;
+	}
+	return (1);
 }

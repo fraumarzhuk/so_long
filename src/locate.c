@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:54:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 17:31:35 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:58:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ int	find_player(t_args *args)
 		args->y++;
 	}
 	if (!args->found)
-		return (0);
+		so_short_error("No player :(", args, true);
 	return (1);
 }
