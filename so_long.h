@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 15:54:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:00:41 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int		is_rectangular(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
+void	collectibles_loop(t_args *args, t_collects *curr);
 
 //Rendering
 void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);

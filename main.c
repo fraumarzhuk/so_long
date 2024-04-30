@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 13:58:22 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:03:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,3 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx);
 	return(0);
 }
-
-//TODO:
-//Map check is_solvable
-//Map check is too big

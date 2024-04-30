@@ -6,11 +6,35 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:54:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 14:20:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:00:56 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	collectibles_loop(t_args *args, t_collects *curr)
+{
+	while (args->map[args->y][args->x] != '\n'
+			&& args->map[args->y][args->x])
+	{
+		if (args->map[args->y][args->x] == 'C')
+		{
+			if (args->map[args->y][args->x] == 'C' && args->collects_found)
+			{
+				curr = curr->next;
+				curr = malloc(sizeof(t_collects));
+				curr->next = NULL;
+			}
+			curr->x = args->x;
+			curr->y = args->y;
+			args->collects_found = true;
+			args->collects_amount++;
+		}
+		args->x++;
+	}
+	args->x = 0;
+	args->y++;
+}
 
 int	find_collectibles(t_args *args)
 {
@@ -24,26 +48,7 @@ int	find_collectibles(t_args *args)
 	curr = malloc(sizeof(t_collects));
 	while (args->y < args->line_count)
 	{
-		while (args->map[args->y][args->x] != '\n'
-			&& args->map[args->y][args->x])
-		{
-			if (args->map[args->y][args->x] == 'C')
-			{
-				if (args->map[args->y][args->x] == 'C' && args->collects_found)
-				{
-					curr = curr->next;
-					curr = malloc(sizeof(t_collects));
-					curr->next = NULL;
-				}
-				curr->x = args->x;
-				curr->y = args->y;
-				args->collects_found = true;
-				args->collects_amount++;
-			}
-			args->x++;
-		}
-		args->x = 0;
-		args->y++;
+		collectibles_loop(args, curr);
 	}
 	if (!args->collects_found)
 		so_short_error("No collectibles found.", args, true);
