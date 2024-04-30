@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 13:21:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:56:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,15 @@ typedef struct s_env
 
 //Parsing
 int		map_init(t_args *args);
-
 int		map_validation(char *argv, t_args *args);
 int		check_walls(t_args *args);
+int		is_solvable(t_args *args);
+int		is_rectangular(t_args *args);
+
+//Locate
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
-int		is_solvable(t_args *args);
-int		is_rectangular(t_args *args);
 
 //Rendering
 void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
