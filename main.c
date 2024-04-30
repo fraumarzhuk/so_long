@@ -6,70 +6,12 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/29 14:43:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:58:22 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void player_forward(t_env *env)
-{
-	    if (env->img->is_player_2)
-        {
-            env->img->player_pic_path = "./img/player/player_1.xpm";
-            env->img->is_player_2 = false;
-        }
-        else
-        {
-            env->img->player_pic_path = "./img/player/player_2.xpm";
-            env->img->is_player_2 = true;
-        }
-}
-void player_back(t_env *env)
-{
-	    if (env->img->is_player_2)
-        {
-            env->img->player_pic_path = "./img/player/player_3.xpm";
-            env->img->is_player_2 = false;
-        }
-        else
-        {
-            env->img->player_pic_path = "./img/player/player_4.xpm";
-            env->img->is_player_2 = true;
-        }
-}
 
-void check_on_exit(t_env *env)
-{
-	if ((env->args->player_x == env->args->exit_x) && (env->args->player_y == env->args->exit_y))
-	{
-		if (env->args->collects_collected == true)
-		{
-			render_player(env->img, env->mlx, env->mlx_win, env->args, "./img/player/player_exit.xpm");
-			mlx_destroy_window(env->mlx, env->mlx_win);
-			exit(0);
-		}
-		env->img->player_pic_path = "./img/player/player_exit.xpm";
-		env->img->player_exit = true;
-	}
-	else
-		env->img->player_exit = false;
-}
-
-int frameupdate(t_env *env)
-{
-    env->args->frame++;
-    if(env->args->frame >= 2000)
-    {
-		check_on_exit(env);
-		if (env->img->player_back == true && env->img->player_exit == false)
-			player_back(env);
-		else if (env->img->player_back == false && env->img->player_exit == false)
-			player_forward(env);
-        render_player(env->img, env->mlx, env->mlx_win, env->args, env->img->player_pic_path);
-        env->args->frame = 0;
-    }
-    return (0);
-}
 
 int	main(int argc, char **argv)
 {

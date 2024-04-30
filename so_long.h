@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 13:56:04 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:23:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_data
 // game itself, important info about 
 typedef struct args
 {
+	int			x;
+	int			y;
 	int			frame;	
 	int			line_len;
 	int			line_count;
@@ -68,6 +70,7 @@ typedef struct args
 	int			exit_y;
 	char		**map;
 	char		**map_copy;
+	bool		found;
 	bool		collects_found;
 	bool		collects_collected;
 	int			collects_amount;
@@ -102,14 +105,20 @@ void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 
+//Render player
+void	render_player(t_data *img, void	*mlx, void *mlx_win,
+			t_args *args, char	*player_path);
+void	player_forward(t_env *env);
+void	player_back(t_env *env);
+void	check_on_exit(t_env *env);
+int		frameupdate(t_env *env);
+
 //Utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	my_ff(t_args *args, int x, int y);
 int		insert_end(t_map **map, t_args *args);
 //Errors
 void	so_short_error(char *str, t_args *args, bool collected);
-//Render player
-void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*player_path);
 //Events
 int		key_press(int keycode, t_env *env);
 void	check_collects(t_env *env);

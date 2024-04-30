@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 13:55:14 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:09:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_walls(t_args *args)
 }
 
 
-int is_rectangular(t_args *args)
+int	is_rectangular(t_args *args)
 {
 	int		i;
 
@@ -108,30 +108,26 @@ int is_rectangular(t_args *args)
 		i++;
 	}
 	if (((int)ft_strlen(args->map[i]) + 1) != args->line_len)
-			so_short_error("Map is not a rectangle!", args, true);
+		so_short_error("Map is not a rectangle!", args, true);
 	return (1);
 }
 
-int is_solvable(t_args *args)
+int	is_solvable(t_args *args)
 {
-    my_ff(args, args->player_x, args->player_y);
-	int i;
-/* 	int i = 0;
- 	while (i < args->line_count)
-	{
-		printf("%s", args->map_copy[i]);
-		i++;
-	}
-	printf("\n"); */
+	int	i;
+
+	my_ff(args, args->player_x, args->player_y);
+
 	i = 0;
 	while (i < args->line_count)
 	{
-		if (ft_strchr(args->map_copy[i], 'C') || ft_strchr(args->map_copy[i], 'E'))
+		if (ft_strchr(args->map_copy[i], 'C')
+			|| ft_strchr(args->map_copy[i], 'E'))
 		{
 			free_split(args->map_copy);
 			so_short_error("Map cannot be solved.", args, true);
-		}	
+		}
 		i++;
 	}
-    return(1);
+	return (1);
 }
