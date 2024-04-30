@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 14:23:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:54:00 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int		frameupdate(t_env *env);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	my_ff(t_args *args, int x, int y);
 int		insert_end(t_map **map, t_args *args);
+void	copy_map(t_args *args, t_map *map);
 //Errors
 void	so_short_error(char *str, t_args *args, bool collected);
 //Events

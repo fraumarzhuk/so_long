@@ -6,17 +6,15 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 14:09:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:54:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-int map_init(t_args *args)
-{ 
+int	map_init(t_args *args)
+{
 	t_map	*map;
-	int		i;
 
 	args->line_count = 0;
 	map = ft_calloc(sizeof(t_map), 1);
@@ -29,21 +27,7 @@ int map_init(t_args *args)
 	map->next = NULL;
 	while (insert_end(&map, args) != 0)
 		args->line_count++;
-	i = 0;
-	args->map = ft_calloc(args->line_count + 1, sizeof(char *));
-	args->map_copy = ft_calloc(args->line_count + 1, sizeof(char *));
-	if (!args->map)
-		so_short_error("Malloc failed.", args, true);
-	while (i < args->line_count && map)
-	{
-		args->map[i] = ft_strdup(map->line);
-		args->map_copy[i] = ft_strdup(map->line);
-		map = map->next;
-		i++;
-	}
-	args->map[i] = NULL;
-	args->map_copy[i] = NULL;
-	args->line_len = (int)ft_strlen(args->map[0]);
+	copy_map(args, map);
 	return (1);
 }
 
@@ -95,7 +79,6 @@ int	check_walls(t_args *args)
 	return (1);
 }
 
-
 int	is_rectangular(t_args *args)
 {
 	int		i;
@@ -116,9 +99,8 @@ int	is_solvable(t_args *args)
 {
 	int	i;
 
-	my_ff(args, args->player_x, args->player_y);
-
 	i = 0;
+	my_ff(args, args->player_x, args->player_y);
 	while (i < args->line_count)
 	{
 		if (ft_strchr(args->map_copy[i], 'C')

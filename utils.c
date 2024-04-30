@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:56:39 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 13:52:10 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:53:51 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,25 @@ int	insert_end(t_map **map, t_args *args)
 	if (!new_node->line)
 		return (0);
 	return (1);
+}
+
+void	copy_map(t_args *args, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	args->map = ft_calloc(args->line_count + 1, sizeof(char *));
+	args->map_copy = ft_calloc(args->line_count + 1, sizeof(char *));
+	if (!args->map)
+		so_short_error("Malloc failed.", args, true);
+	while (i < args->line_count && map)
+	{
+		args->map[i] = ft_strdup(map->line);
+		args->map_copy[i] = ft_strdup(map->line);
+		map = map->next;
+		i++;
+	}
+	args->map[i] = NULL;
+	args->map_copy[i] = NULL;
+	args->line_len = (int)ft_strlen(args->map[0]);
 }
