@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 15:54:31 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:48:38 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 int	map_init(t_args *args)
 {
 	t_map	*map;
-
+	t_map *curr = NULL;
+	
 	args->line_count = 0;
-	map = ft_calloc(sizeof(t_map), 1);
+	map = malloc(sizeof (t_map));
 	if (!map)
 		so_short_error("Malloc failed!", args, false);
 	map->line = get_next_line(args->fd);
@@ -28,6 +29,14 @@ int	map_init(t_args *args)
 	while (insert_end(&map, args) != 0)
 		args->line_count++;
 	copy_map(args, map);
+	curr = map;
+	while(curr)
+	{
+		t_map *tmp = curr;
+		curr = curr->next;
+		free(tmp->line);
+		free(tmp);
+	}
 	return (1);
 }
 

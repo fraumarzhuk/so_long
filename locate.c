@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:54:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 16:00:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:58:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	find_collectibles(t_args *args)
 	{
 		collectibles_loop(args, curr);
 	}
+	free(curr);
 	if (!args->collects_found)
 		so_short_error("No collectibles found.", args, true);
 	return (1);

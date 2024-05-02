@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:46 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 14:05:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:30:34 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args, char	*pl
 	img->img = mlx_xpm_file_to_image(mlx, player_path, &img_width, &img_height);
 	mlx_put_image_to_window(mlx, mlx_win, img->img, args->player_x * 65,
 		args->player_y * 65);
+	mlx_destroy_image(mlx, img->img);
 }
 
 void	player_forward(t_env *env)

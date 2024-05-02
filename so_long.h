@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 16:00:41 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:03:38 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
-# include <mlx.h>
+# include "./mlx/mlx.h"
 # include "./libft/libft.h"
 # include "./libft/printf/ft_printf.h"
 # include "./gnl/get_next_line_bonus.h"

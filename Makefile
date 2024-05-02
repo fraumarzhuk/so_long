@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -fsanitize=address
-MLXFLAGS = -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
+MLXFLAGS = -L/usr/X11/lib -lX11 -lXext -lm
 LIBFT_DIR = ./libft
 MLX_DIR = ./mlx
 GNL_DIR = ./gnl
