@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/05/02 21:03:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:50:56 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 
 //Render player
-void	render_player(t_data *img, void	*mlx, void *mlx_win,
-			t_args *args, char	*player_path);
+void	render_player(t_data *img, void	*mlx, void *mlx_win, t_args *args);
 void	player_forward(t_env *env);
 void	player_back(t_env *env);
 void	check_on_exit(t_env *env);
@@ -119,6 +118,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	my_ff(t_args *args, int x, int y);
 int		insert_end(t_map **map, t_args *args);
 void	copy_map(t_args *args, t_map *map);
+int		check_random_chars(t_args *args);
 //Errors
 void	so_short_error(char *str, t_args *args, bool collected);
 //Events

@@ -12,7 +12,7 @@ YELLOW=\033[0;33m
 NC=\033[0m # No Color
 
 # Source files
-SRCS = main.c parsing.c errors.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c rendering.c render_player.c events.c locate.c utils.c
+SRCS = ./src/main.c ./src/parsing.c ./src/errors.c ./gnl/get_next_line_bonus.c ./gnl/get_next_line_utils_bonus.c ./src/rendering.c ./src/render_player.c ./src/events.c ./src/locate.c ./src/utils.c
 OBJS = $(SRCS:.c=.o)
 
 # 'all' target
