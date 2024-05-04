@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/05/04 16:50:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:47:07 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	copy_map(t_args *args, t_map *map);
 int		check_random_chars(t_args *args);
 //Errors
 void	so_short_error(char *str, t_args *args, bool collected);
+void	declare_magic_list(void);
 //Events
 int		key_press(int keycode, t_env *env);
 void	check_collects(t_env *env);

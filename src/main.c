@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/05/04 17:17:59 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:47:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,8 @@ int	main(int argc, char **argv)
 	t_args	*args;
 	t_data	*img;
 	t_env	env;
-	t_allocs *lst = ft_calloc(1, sizeof(t_allocs));
 
-	if (lst == NULL)
-		return (1);
-	ft_allocs(lst);
+	declare_magic_list();
 	args = ft_malloc(sizeof(t_args));
 	if (!args)
 		so_short_error("Malloc failed!", args, false);
