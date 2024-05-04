@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:46 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/05/02 21:30:34 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:14:30 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	check_on_exit(t_env *env)
 int	frameupdate(t_env *env)
 {
 	env->args->frame++;
-	if (env->args->frame >= 2000)
+	if (env->args->frame >= 20000)
 	{
 		check_on_exit(env);
 		if (env->img->player_back == true && env->img->player_exit == false)
