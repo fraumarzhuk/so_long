@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/05/02 21:49:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:22:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 int	key_press(int keycode, t_env *env)
 {
-	if (keycode == 65307)
+	if (keycode == 53)
 	{
+		/*add free everything*/
 		mlx_destroy_window(env->mlx, env->mlx_win);
 		exit(1);
 	}
-	if (keycode == 124 || keycode == 100)
+	if (keycode == 124 || keycode == 2)
 		move_on_x(env, env->args->player_y, env->args->player_x + 1, 1);
-	if (keycode == 123 || keycode == 97)
+	if (keycode == 123 || keycode == 0)
 		move_on_x(env, env->args->player_y, env->args->player_x -1, -1);
-	if (keycode == 126 || keycode == 119)
+	if (keycode == 126 || keycode == 13)
 		move_on_y(env, env->args->player_y - 1, env->args->player_x, -1);
-	if (keycode == 125 || keycode == 115)
+	if (keycode == 125 || keycode == 1)
 		move_on_y(env, env->args->player_y + 1, env->args->player_x, 1);
 	return (0);
 }
+
 
 void	move_on_y(t_env *env, int y, int x, int sign)
 {
