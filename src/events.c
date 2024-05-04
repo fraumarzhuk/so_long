@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/05/04 16:45:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:59:17 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	key_press(int keycode, t_env *env)
 		mlx_destroy_window(env->mlx, env->mlx_win);
 		exit(1);
 	}
-	if (keycode == 124 || keycode == 100)
+	if (keycode == 100 || keycode == 65363)
 		move_on_x(env, env->args->player_y, env->args->player_x + 1, 1);
-	if (keycode == 123 || keycode == 97)
+	if (keycode == 97 || keycode == 65361)
 		move_on_x(env, env->args->player_y, env->args->player_x -1, -1);
-	if (keycode == 126 || keycode == 119)
+	if (keycode == 119 || keycode == 65362)
 		move_on_y(env, env->args->player_y - 1, env->args->player_x, -1);
-	if (keycode == 125 || keycode == 115)
+	if (keycode == 115 || keycode == 65364)
 		move_on_y(env, env->args->player_y + 1, env->args->player_x, 1);
 	return (0);
 }
