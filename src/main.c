@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:58 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/30 17:31:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:17:59 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,12 @@ int	main(int argc, char **argv)
 	t_args	*args;
 	t_data	*img;
 	t_env	env;
+	t_allocs *lst = ft_calloc(1, sizeof(t_allocs));
 
-	args = malloc(sizeof(t_args));
+	if (lst == NULL)
+		return (1);
+	ft_allocs(lst);
+	args = ft_malloc(sizeof(t_args));
 	if (!args)
 		so_short_error("Malloc failed!", args, false);
 	check_args(args, argv, argc);
@@ -57,7 +61,7 @@ int	main(int argc, char **argv)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, args->line_len * 65,
 			args->line_count * 65, "So long!");
-	img = malloc(sizeof(t_data));
+	img = ft_malloc(sizeof(t_data));
 	if (!img)
 		so_short_error("Malloc failed!", args, true);
 	init_img(img);

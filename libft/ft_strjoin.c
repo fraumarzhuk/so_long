@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:02:05 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/11/16 15:46:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:08:10 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 
 	i = 0;
-	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	result = ft_malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	while (*s1)

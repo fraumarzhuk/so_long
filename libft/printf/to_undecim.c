@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   to_undecim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariannazhukova <mariannazhukova@studen    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:03:43 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/03/11 15:00:15 by mariannazhu      ###   ########.fr       */
+/*   Updated: 2024/05/04 17:08:19 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*convert_num(unsigned int n)
 		len++;
 		temp_n /= 10;
 	}
-	res = malloc((len + 1) * sizeof(char));
+	res = ft_malloc((len + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	res[len] = '\0';

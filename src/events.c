@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/05/04 16:59:17 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:11:59 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	key_press(int keycode, t_env *env)
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(env->mlx, env->mlx_win);
+		ft_destructor();
 		exit(1);
 	}
 	if (keycode == 100 || keycode == 65363)

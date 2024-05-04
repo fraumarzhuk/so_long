@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:56:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/11/18 13:05:09 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:07:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_itoa(int n)
 		len++;
 		temp_n /= 10;
 	}
-	res = malloc((len + 1) * sizeof(char));
+	res = ft_malloc((len + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	res[len] = '\0';

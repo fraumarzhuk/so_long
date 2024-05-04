@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 01:39:07 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/04/10 11:17:23 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:10:56 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ftt_strjoin(char const *s1, char const *s2)
 	int		i;
 
 	i = 0;
-	result = malloc((ftt_strlen(s1) + ftt_strlen(s2) + 1) * sizeof(char));
+	result = ft_malloc((ftt_strlen(s1) + ftt_strlen(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	while (*s1)
@@ -66,7 +66,7 @@ void	*ftt_calloc(int count, int size)
 	char	*p;
 	int		i;
 
-	p = malloc(count * size);
+	p = ft_malloc(count * size);
 	if (!p)
 		return (NULL);
 	i = 0;
@@ -81,7 +81,7 @@ char	*ftt_strdup(const char *s)
 	int		i;
 
 	i = 0;
-	s2 = malloc ((sizeof(char)) * (ftt_strlen(s) + 1));
+	s2 = ft_malloc ((sizeof(char)) * (ftt_strlen(s) + 1));
 	if (!s2 || !s)
 		return (NULL);
 	while (s[i] != '\0')

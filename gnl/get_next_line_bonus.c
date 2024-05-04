@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:04:02 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/10 11:15:31 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:13:08 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_start(const char *remainder)
 	len = 0;
 	while (remainder[len] != '\n' && remainder[len] != '\0')
 		len++;
-	start = malloc(len + 2);
+	start = ft_malloc(len + 2);
 	if (!start)
 		return (NULL);
 	temp = start;
@@ -48,7 +48,7 @@ char	*get_remainder(const char *remainder)
 		n++;
 	if (remainder[n] == '\0' || remainder[n + 1] == '\0' )
 		return (NULL);
-	end = malloc(ftt_strlen(remainder) - n + 1);
+	end = ft_malloc(ftt_strlen(remainder) - n + 1);
 	if (!end)
 		return (NULL);
 	temp = end;
@@ -71,7 +71,7 @@ char	*read_and_store(char *buffer, char **remainder)
 	else
 	{
 		temp = ftt_strjoin(*remainder, buffer);
-		free(*remainder);
+		ft_free(*remainder);
 		*remainder = temp;
 	}
 	if (!*remainder)
@@ -82,7 +82,7 @@ char	*read_and_store(char *buffer, char **remainder)
 	{
 		res = get_start(*remainder);
 		new_remainder = get_remainder(*remainder);
-		free(*remainder);
+		ft_free(*remainder);
 		*remainder = new_remainder;
 		return (res);
 	}
@@ -102,7 +102,7 @@ char	*process_remainder(char **remainder)
 		else
 		{
 			res = ftt_strdup(*remainder);
-			free(*remainder);
+			ft_free(*remainder);
 			*remainder = NULL;
 		}
 	}
@@ -117,7 +117,7 @@ char	*get_next_line(int fd)
 	size_t		bytes_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (free(remainder[fd]), remainder[fd] = NULL, NULL);
+		return (ft_free(remainder[fd]), remainder[fd] = NULL, NULL);
 	while (1)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);

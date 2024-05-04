@@ -46,6 +46,12 @@ SRCS =  ft_calloc.c \
         printf/to_s.c \
         printf/to_undecim.c
 
+SRCS += \
+		../leak_killer/ft_calloc.c \
+		../leak_killer/ft_malloc.c \
+		../leak_killer/ft_destructors.c \
+		../leak_killer/ft_utils.c
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

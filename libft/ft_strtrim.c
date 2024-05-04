@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:30:43 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/11/18 13:45:30 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:08:14 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	while (end > start && ft_strrchr(set, s1[end - 1]))
 		end--;
-	res = malloc((end - start + 1) * sizeof(char));
+	res = ft_malloc((end - start + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	while (start < end)

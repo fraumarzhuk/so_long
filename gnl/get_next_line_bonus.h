@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:05:15 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/10 11:18:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:10:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "../leak_killer/ft_alloc.h"
 
 # ifndef MAX_FD
 #  define MAX_FD 10240

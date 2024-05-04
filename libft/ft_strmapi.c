@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:37:41 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/11/17 18:52:25 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:08:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
-	res = malloc((ft_strlen(s) + 1) * sizeof(char));
+	res = ft_malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	i = 0;

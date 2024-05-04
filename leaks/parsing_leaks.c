@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_leaks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 09:24:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/05/02 21:48:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:07:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	map_init(t_args *args)
 	t_map *curr = NULL;
 	
 	args->line_count = 0;
-	map = malloc(sizeof (t_map));
+	map = ft_malloc(sizeof (t_map));
 	if (!map)
 		so_short_error("Malloc failed!", args, false);
 	map->line = get_next_line(args->fd);

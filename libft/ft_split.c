@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:35:43 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/11/17 13:47:39 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:08:05 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*allocate_word(const char *start, int len)
 	char	*word;
 	int		i;
 
-	word = malloc(len + 1);
+	word = ft_malloc(len + 1);
 	if (!word)
 		return (NULL);
 	i = 0;
@@ -70,7 +70,7 @@ char	**allocate_array(char const *s, char c)
 	char	**result;
 
 	words = count_words(s, c);
-	result = malloc((words + 1) * sizeof(char *));
+	result = ft_malloc((words + 1) * sizeof(char *));
 	return (result);
 }
 

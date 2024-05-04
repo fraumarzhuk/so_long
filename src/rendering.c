@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:35:09 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 17:31:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:15:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 		x = 0;
 		y++;
 	}
+	mlx_destroy_image(mlx, img->img);
 }
 
 void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args)
@@ -67,6 +68,7 @@ void	render_background(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 		x = 0;
 		y++;
 	}
+	mlx_destroy_image(mlx, img->img);
 }
 
 void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args)
@@ -95,6 +97,7 @@ void	render_collects(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 		x = 0;
 		y++;
 	}
+	mlx_destroy_image(mlx, img->img);
 }
 
 void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
@@ -124,6 +127,7 @@ void	render_exit(t_data *img, void	*mlx, void *mlx_win, t_args *args)
 		x = 0;
 		y++;
 	}
+	mlx_destroy_image(mlx, img->img);
 }
 
 void	render_everything(t_data *img, void	*mlx, void *mlx_win, t_args *args)

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:54:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/04/30 17:58:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:08:49 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	collectibles_loop(t_args *args, t_collects *curr)
 			if (args->map[args->y][args->x] == 'C' && args->collects_found)
 			{
 				curr = curr->next;
-				curr = malloc(sizeof(t_collects));
+				curr = ft_malloc(sizeof(t_collects));
 				curr->next = NULL;
 			}
 			curr->x = args->x;
@@ -45,7 +45,7 @@ int	find_collectibles(t_args *args)
 	curr = args->collects;
 	args->collects_found = false;
 	args->collects_amount = 0;
-	curr = malloc(sizeof(t_collects));
+	curr = ft_malloc(sizeof(t_collects));
 	while (args->y < args->line_count)
 	{
 		collectibles_loop(args, curr);
