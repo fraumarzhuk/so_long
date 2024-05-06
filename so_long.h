@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/05/04 17:47:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:08:51 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_data
 	bool	player_back;
 	bool	is_player_2;
 	bool	player_exit;
+	int		img_width;
+	int		img_height;
 }				t_data;
 
 // game itself, important info about 
