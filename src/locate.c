@@ -6,27 +6,19 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:54:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/05/04 17:08:49 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:19:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	collectibles_loop(t_args *args, t_collects *curr)
+void	collectibles_loop(t_args *args)
 {
 	while (args->map[args->y][args->x] != '\n'
 			&& args->map[args->y][args->x])
 	{
 		if (args->map[args->y][args->x] == 'C')
 		{
-			if (args->map[args->y][args->x] == 'C' && args->collects_found)
-			{
-				curr = curr->next;
-				curr = ft_malloc(sizeof(t_collects));
-				curr->next = NULL;
-			}
-			curr->x = args->x;
-			curr->y = args->y;
 			args->collects_found = true;
 			args->collects_amount++;
 		}
@@ -38,17 +30,13 @@ void	collectibles_loop(t_args *args, t_collects *curr)
 
 int	find_collectibles(t_args *args)
 {
-	t_collects	*curr;
-
 	args->x = 0;
 	args->y = 0;
-	curr = args->collects;
 	args->collects_found = false;
 	args->collects_amount = 0;
-	curr = ft_malloc(sizeof(t_collects));
 	while (args->y < args->line_count)
 	{
-		collectibles_loop(args, curr);
+		collectibles_loop(args);
 	}
 	if (!args->collects_found)
 		so_short_error("No collectibles found.", args, true);

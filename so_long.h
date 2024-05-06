@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:45:27 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/05/06 13:08:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:19:26 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ typedef struct map
 	char		*line;
 	struct map	*next;
 }	t_map;
-
-//linked list with collectibles
-typedef struct collects
-{
-	int				x;
-	int				y;
-	struct collects	*next;
-}	t_collects;
 
 //the window scene(maybe rename it)
 typedef struct s_data
@@ -77,7 +69,6 @@ typedef struct args
 	bool		collects_collected;
 	int			collects_amount;
 	int			moves;
-	t_collects	*collects;
 }	t_args;
 
 typedef struct s_env
@@ -99,7 +90,7 @@ int		is_rectangular(t_args *args);
 int		find_player(t_args *args);
 int		find_exit(t_args *args);
 int		find_collectibles(t_args *args);
-void	collectibles_loop(t_args *args, t_collects *curr);
+void	collectibles_loop(t_args *args);
 
 //Rendering
 void	render_walls(t_data *img, void	*mlx, void *mlx_win, t_args *args);
